@@ -103,6 +103,26 @@ class DefaultApiTest extends TestCase
     }
 
     /**
+     * Test case for indexByImageUrl
+     *
+     * Index by Using Image URL.
+     *
+     */
+    public function testIndexByImageUrl()
+    {
+    }
+
+    /**
+     * Test case for indexImage
+     *
+     * Index Local Image.
+     *
+     */
+    public function testIndexImage()
+    {
+    }
+
+    /**
      * Test case for tagImageByUrl
      *
      * Tag Image by Using Image Url.

@@ -85,13 +85,15 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.classifyai.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**createNewModel**](docs/Api/DefaultApi.md#createnewmodel) | **PUT** /models | Create New Model
 *DefaultApi* | [**deleteModel**](docs/Api/DefaultApi.md#deletemodel) | **DELETE** /models | Delete Model
 *DefaultApi* | [**getModelsList**](docs/Api/DefaultApi.md#getmodelslist) | **GET** /models | Get Models List
+*DefaultApi* | [**indexByImageUrl**](docs/Api/DefaultApi.md#indexbyimageurl) | **GET** /index_by_image_url | Index by Using Image URL
+*DefaultApi* | [**indexImage**](docs/Api/DefaultApi.md#indeximage) | **POST** /index_image | Index Local Image
 *DefaultApi* | [**tagImageByUrl**](docs/Api/DefaultApi.md#tagimagebyurl) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 *DefaultApi* | [**tagLocalImage**](docs/Api/DefaultApi.md#taglocalimage) | **POST** /predict | Predict by Image
 *DefaultApi* | [**updateModel**](docs/Api/DefaultApi.md#updatemodel) | **POST** /models | Update Model
@@ -100,6 +102,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [InlineObject](docs/Model/InlineObject.md)
+ - [InlineObject1](docs/Model/InlineObject1.md)
 
 
 ## Documentation For Authorization

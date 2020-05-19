@@ -436,8 +436,8 @@ class Configuration
     {
         return array(
           array(
-            "url" => "/",
-            "description" => "No description provided",
+            "url" => "https://api.classifyai.com",
+            "description" => "Classify API",
           )
         );
     }

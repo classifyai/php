@@ -1,12 +1,14 @@
 # OpenAPI\Client\DefaultApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.classifyai.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createNewModel**](DefaultApi.md#createNewModel) | **PUT** /models | Create New Model
 [**deleteModel**](DefaultApi.md#deleteModel) | **DELETE** /models | Delete Model
 [**getModelsList**](DefaultApi.md#getModelsList) | **GET** /models | Get Models List
+[**indexByImageUrl**](DefaultApi.md#indexByImageUrl) | **GET** /index_by_image_url | Index by Using Image URL
+[**indexImage**](DefaultApi.md#indexImage) | **POST** /index_image | Index Local Image
 [**tagImageByUrl**](DefaultApi.md#tagImageByUrl) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 [**tagLocalImage**](DefaultApi.md#tagLocalImage) | **POST** /predict | Predict by Image
 [**updateModel**](DefaultApi.md#updateModel) | **POST** /models | Update Model
@@ -139,7 +141,7 @@ void (empty response body)
 
 ## getModelsList
 
-> getModelsList()
+> string getModelsList()
 
 Get Models List
 
@@ -166,7 +168,8 @@ $apiInstance = new OpenAPI\Client\Api\DefaultApi(
 );
 
 try {
-    $apiInstance->getModelsList();
+    $result = $apiInstance->getModelsList();
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->getModelsList: ', $e->getMessage(), PHP_EOL;
 }
@@ -179,7 +182,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**string**
 
 ### Authorization
 
@@ -188,6 +191,136 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## indexByImageUrl
+
+> string indexByImageUrl($model_id, $image_url)
+
+Index by Using Image URL
+
+Index by Using Image URL
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: x-api-key
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$model_id = 'model_id_example'; // string | Model ID
+$image_url = 'image_url_example'; // string | Image URL
+
+try {
+    $result = $apiInstance->indexByImageUrl($model_id, $image_url);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->indexByImageUrl: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **model_id** | **string**| Model ID |
+ **image_url** | **string**| Image URL |
+
+### Return type
+
+**string**
+
+### Authorization
+
+[x-api-key](../../README.md#x-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## indexImage
+
+> string indexImage($model_id, $file)
+
+Index Local Image
+
+Index Local Image
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: x-api-key
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('x-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('x-api-key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$model_id = 'model_id_example'; // string | Model ID
+$file = "/path/to/file.txt"; // \SplFileObject | 
+
+try {
+    $result = $apiInstance->indexImage($model_id, $file);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->indexImage: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **model_id** | **string**| Model ID |
+ **file** | **\SplFileObject****\SplFileObject**|  | [optional]
+
+### Return type
+
+**string**
+
+### Authorization
+
+[x-api-key](../../README.md#x-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
