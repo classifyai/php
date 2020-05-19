@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**createNewModel**](DefaultApi.md#createNewModel) | **PUT** /models | Create New Model
 [**deleteModel**](DefaultApi.md#deleteModel) | **DELETE** /models | Delete Model
 [**getModelsList**](DefaultApi.md#getModelsList) | **GET** /models | Get Models List
-[**indexByImageUrl**](DefaultApi.md#indexByImageUrl) | **GET** /index_by_image_url | Index by Using Image URL
+[**indexByImageUrl**](DefaultApi.md#indexByImageUrl) | **POST** /index_by_image_url | Index by Using Image URL
 [**indexImage**](DefaultApi.md#indexImage) | **POST** /index_image | Index Local Image
 [**tagImageByUrl**](DefaultApi.md#tagImageByUrl) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 [**tagLocalImage**](DefaultApi.md#tagLocalImage) | **POST** /predict | Predict by Image
@@ -200,7 +200,7 @@ This endpoint does not need any parameter.
 
 ## indexByImageUrl
 
-> string indexByImageUrl($model_id, $image_url)
+> indexByImageUrl($inline_object)
 
 Index by Using Image URL
 
@@ -225,12 +225,10 @@ $apiInstance = new OpenAPI\Client\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$model_id = 'model_id_example'; // string | Model ID
-$image_url = 'image_url_example'; // string | Image URL
+$inline_object = new \OpenAPI\Client\Model\InlineObject(); // \OpenAPI\Client\Model\InlineObject | 
 
 try {
-    $result = $apiInstance->indexByImageUrl($model_id, $image_url);
-    print_r($result);
+    $apiInstance->indexByImageUrl($inline_object);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->indexByImageUrl: ', $e->getMessage(), PHP_EOL;
 }
@@ -242,12 +240,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model_id** | **string**| Model ID |
- **image_url** | **string**| Image URL |
+ **inline_object** | [**\OpenAPI\Client\Model\InlineObject**](../Model/InlineObject.md)|  |
 
 ### Return type
 
-**string**
+void (empty response body)
 
 ### Authorization
 
@@ -255,8 +252,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../../README.md#documentation-for-models)
@@ -265,7 +262,7 @@ Name | Type | Description  | Notes
 
 ## indexImage
 
-> string indexImage($model_id, $file)
+> string indexImage($model_id, $tag, $file)
 
 Index Local Image
 
@@ -290,11 +287,12 @@ $apiInstance = new OpenAPI\Client\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$model_id = 'model_id_example'; // string | Model ID
+$model_id = 'model_id_example'; // string | 
+$tag = 'tag_example'; // string | 
 $file = "/path/to/file.txt"; // \SplFileObject | 
 
 try {
-    $result = $apiInstance->indexImage($model_id, $file);
+    $result = $apiInstance->indexImage($model_id, $tag, $file);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->indexImage: ', $e->getMessage(), PHP_EOL;
@@ -307,7 +305,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model_id** | **string**| Model ID |
+ **model_id** | **string**|  | [optional]
+ **tag** | **string**|  | [optional]
  **file** | **\SplFileObject****\SplFileObject**|  | [optional]
 
 ### Return type
@@ -394,7 +393,7 @@ void (empty response body)
 
 ## tagLocalImage
 
-> tagLocalImage($model_id, $file)
+> tagLocalImage($file, $model_id)
 
 Predict by Image
 
@@ -419,11 +418,11 @@ $apiInstance = new OpenAPI\Client\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$model_id = 'model_id_example'; // string | Type your trained model id to predict. You get your model's id from Classify Dashboard.
 $file = "/path/to/file.txt"; // \SplFileObject | 
+$model_id = 'model_id_example'; // string | 
 
 try {
-    $apiInstance->tagLocalImage($model_id, $file);
+    $apiInstance->tagLocalImage($file, $model_id);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->tagLocalImage: ', $e->getMessage(), PHP_EOL;
 }
@@ -435,8 +434,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **model_id** | **string**| Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard. |
  **file** | **\SplFileObject****\SplFileObject**|  | [optional]
+ **model_id** | **string**|  | [optional]
 
 ### Return type
 

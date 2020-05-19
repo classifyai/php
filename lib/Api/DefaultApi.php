@@ -911,17 +911,15 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Model ID (required)
-     * @param  string $image_url Image URL (required)
+     * @param  \OpenAPI\Client\Model\InlineObject $inline_object inline_object (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return string
+     * @return void
      */
-    public function indexByImageUrl($model_id, $image_url)
+    public function indexByImageUrl($inline_object)
     {
-        list($response) = $this->indexByImageUrlWithHttpInfo($model_id, $image_url);
-        return $response;
+        $this->indexByImageUrlWithHttpInfo($inline_object);
     }
 
     /**
@@ -932,16 +930,15 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Model ID (required)
-     * @param  string $image_url Image URL (required)
+     * @param  \OpenAPI\Client\Model\InlineObject $inline_object (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of string, HTTP status code, HTTP response headers (array of strings)
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function indexByImageUrlWithHttpInfo($model_id, $image_url)
+    public function indexByImageUrlWithHttpInfo($inline_object)
     {
-        $request = $this->indexByImageUrlRequest($model_id, $image_url);
+        $request = $this->indexByImageUrlRequest($inline_object);
 
         try {
             $options = $this->createHttpClientOption();
@@ -971,46 +968,10 @@ class DefaultApi
                 );
             }
 
-            $responseBody = $response->getBody();
-            switch($statusCode) {
-                case 200:
-                    if ('string' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, 'string', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = 'string';
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = (string) $responseBody;
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return [null, $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
             }
             throw $e;
         }
@@ -1024,15 +985,14 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Model ID (required)
-     * @param  string $image_url Image URL (required)
+     * @param  \OpenAPI\Client\Model\InlineObject $inline_object (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function indexByImageUrlAsync($model_id, $image_url)
+    public function indexByImageUrlAsync($inline_object)
     {
-        return $this->indexByImageUrlAsyncWithHttpInfo($model_id, $image_url)
+        return $this->indexByImageUrlAsyncWithHttpInfo($inline_object)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1048,33 +1008,21 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Model ID (required)
-     * @param  string $image_url Image URL (required)
+     * @param  \OpenAPI\Client\Model\InlineObject $inline_object (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function indexByImageUrlAsyncWithHttpInfo($model_id, $image_url)
+    public function indexByImageUrlAsyncWithHttpInfo($inline_object)
     {
-        $returnType = 'string';
-        $request = $this->indexByImageUrlRequest($model_id, $image_url);
+        $returnType = '';
+        $request = $this->indexByImageUrlRequest($inline_object);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -1099,24 +1047,17 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Model ID (required)
-     * @param  string $image_url Image URL (required)
+     * @param  \OpenAPI\Client\Model\InlineObject $inline_object (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function indexByImageUrlRequest($model_id, $image_url)
+    protected function indexByImageUrlRequest($inline_object)
     {
-        // verify the required parameter 'model_id' is set
-        if ($model_id === null || (is_array($model_id) && count($model_id) === 0)) {
+        // verify the required parameter 'inline_object' is set
+        if ($inline_object === null || (is_array($inline_object) && count($inline_object) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $model_id when calling indexByImageUrl'
-            );
-        }
-        // verify the required parameter 'image_url' is set
-        if ($image_url === null || (is_array($image_url) && count($image_url) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $image_url when calling indexByImageUrl'
+                'Missing the required parameter $inline_object when calling indexByImageUrl'
             );
         }
 
@@ -1127,42 +1068,23 @@ class DefaultApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if ($model_id !== null) {
-            if('form' === 'form' && is_array($model_id)) {
-                foreach($model_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['model_id'] = $model_id;
-            }
-        }
-        // query params
-        if ($image_url !== null) {
-            if('form' === 'form' && is_array($image_url)) {
-                foreach($image_url as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['image_url'] = $image_url;
-            }
-        }
 
 
 
         // body params
         $_tempBody = null;
+        if (isset($inline_object)) {
+            $_tempBody = $inline_object;
+        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
+                [],
+                ['application/json']
             );
         }
 
@@ -1220,7 +1142,7 @@ class DefaultApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'GET',
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -1235,16 +1157,17 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Model ID (required)
+     * @param  string $model_id model_id (optional)
+     * @param  string $tag tag (optional)
      * @param  \SplFileObject $file file (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return string
      */
-    public function indexImage($model_id, $file = null)
+    public function indexImage($model_id = null, $tag = null, $file = null)
     {
-        list($response) = $this->indexImageWithHttpInfo($model_id, $file);
+        list($response) = $this->indexImageWithHttpInfo($model_id, $tag, $file);
         return $response;
     }
 
@@ -1256,16 +1179,17 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Model ID (required)
+     * @param  string $model_id (optional)
+     * @param  string $tag (optional)
      * @param  \SplFileObject $file (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of string, HTTP status code, HTTP response headers (array of strings)
      */
-    public function indexImageWithHttpInfo($model_id, $file = null)
+    public function indexImageWithHttpInfo($model_id = null, $tag = null, $file = null)
     {
-        $request = $this->indexImageRequest($model_id, $file);
+        $request = $this->indexImageRequest($model_id, $tag, $file);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1348,15 +1272,16 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Model ID (required)
+     * @param  string $model_id (optional)
+     * @param  string $tag (optional)
      * @param  \SplFileObject $file (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function indexImageAsync($model_id, $file = null)
+    public function indexImageAsync($model_id = null, $tag = null, $file = null)
     {
-        return $this->indexImageAsyncWithHttpInfo($model_id, $file)
+        return $this->indexImageAsyncWithHttpInfo($model_id, $tag, $file)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1372,16 +1297,17 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Model ID (required)
+     * @param  string $model_id (optional)
+     * @param  string $tag (optional)
      * @param  \SplFileObject $file (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function indexImageAsyncWithHttpInfo($model_id, $file = null)
+    public function indexImageAsyncWithHttpInfo($model_id = null, $tag = null, $file = null)
     {
         $returnType = 'string';
-        $request = $this->indexImageRequest($model_id, $file);
+        $request = $this->indexImageRequest($model_id, $tag, $file);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1423,20 +1349,15 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Model ID (required)
+     * @param  string $model_id (optional)
+     * @param  string $tag (optional)
      * @param  \SplFileObject $file (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function indexImageRequest($model_id, $file = null)
+    protected function indexImageRequest($model_id = null, $tag = null, $file = null)
     {
-        // verify the required parameter 'model_id' is set
-        if ($model_id === null || (is_array($model_id) && count($model_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $model_id when calling indexImage'
-            );
-        }
 
         $resourcePath = '/index_image';
         $formParams = [];
@@ -1445,20 +1366,17 @@ class DefaultApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+
+
+
+        // form params
         if ($model_id !== null) {
-            if('form' === 'form' && is_array($model_id)) {
-                foreach($model_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['model_id'] = $model_id;
-            }
+            $formParams['model_id'] = ObjectSerializer::toFormValue($model_id);
         }
-
-
-
+        // form params
+        if ($tag !== null) {
+            $formParams['tag'] = ObjectSerializer::toFormValue($tag);
+        }
         // form params
         if ($file !== null) {
             $multipart = true;
@@ -1823,16 +1741,16 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard. (required)
      * @param  \SplFileObject $file file (optional)
+     * @param  string $model_id model_id (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function tagLocalImage($model_id, $file = null)
+    public function tagLocalImage($file = null, $model_id = null)
     {
-        $this->tagLocalImageWithHttpInfo($model_id, $file);
+        $this->tagLocalImageWithHttpInfo($file, $model_id);
     }
 
     /**
@@ -1843,16 +1761,16 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard. (required)
      * @param  \SplFileObject $file (optional)
+     * @param  string $model_id (optional)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function tagLocalImageWithHttpInfo($model_id, $file = null)
+    public function tagLocalImageWithHttpInfo($file = null, $model_id = null)
     {
-        $request = $this->tagLocalImageRequest($model_id, $file);
+        $request = $this->tagLocalImageRequest($file, $model_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1899,15 +1817,15 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard. (required)
      * @param  \SplFileObject $file (optional)
+     * @param  string $model_id (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function tagLocalImageAsync($model_id, $file = null)
+    public function tagLocalImageAsync($file = null, $model_id = null)
     {
-        return $this->tagLocalImageAsyncWithHttpInfo($model_id, $file)
+        return $this->tagLocalImageAsyncWithHttpInfo($file, $model_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1923,16 +1841,16 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard. (required)
      * @param  \SplFileObject $file (optional)
+     * @param  string $model_id (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function tagLocalImageAsyncWithHttpInfo($model_id, $file = null)
+    public function tagLocalImageAsyncWithHttpInfo($file = null, $model_id = null)
     {
         $returnType = '';
-        $request = $this->tagLocalImageRequest($model_id, $file);
+        $request = $this->tagLocalImageRequest($file, $model_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1963,20 +1881,14 @@ class DefaultApi
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
      * URL: https://api.classifyai.com
      *
-     * @param  string $model_id Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard. (required)
      * @param  \SplFileObject $file (optional)
+     * @param  string $model_id (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function tagLocalImageRequest($model_id, $file = null)
+    protected function tagLocalImageRequest($file = null, $model_id = null)
     {
-        // verify the required parameter 'model_id' is set
-        if ($model_id === null || (is_array($model_id) && count($model_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $model_id when calling tagLocalImage'
-            );
-        }
 
         $resourcePath = '/predict';
         $formParams = [];
@@ -1985,17 +1897,6 @@ class DefaultApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if ($model_id !== null) {
-            if('form' === 'form' && is_array($model_id)) {
-                foreach($model_id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['model_id'] = $model_id;
-            }
-        }
 
 
 
@@ -2003,6 +1904,10 @@ class DefaultApi
         if ($file !== null) {
             $multipart = true;
             $formParams['file'] = \GuzzleHttp\Psr7\try_fopen(ObjectSerializer::toFormValue($file), 'rb');
+        }
+        // form params
+        if ($model_id !== null) {
+            $formParams['model_id'] = ObjectSerializer::toFormValue($model_id);
         }
         // body params
         $_tempBody = null;

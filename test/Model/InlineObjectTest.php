@@ -79,9 +79,23 @@ class InlineObjectTest extends TestCase
     }
 
     /**
-     * Test attribute "file"
+     * Test attribute "image_url"
      */
-    public function testPropertyFile()
+    public function testPropertyImageUrl()
+    {
+    }
+
+    /**
+     * Test attribute "tag"
+     */
+    public function testPropertyTag()
+    {
+    }
+
+    /**
+     * Test attribute "model_id"
+     */
+    public function testPropertyModelId()
     {
     }
 }

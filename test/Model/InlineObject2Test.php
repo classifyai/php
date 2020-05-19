@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineObject1Test
+ * InlineObject2Test
  *
  * PHP version 5
  *
@@ -32,15 +32,15 @@ namespace OpenAPI\Client;
 use PHPUnit\Framework\TestCase;
 
 /**
- * InlineObject1Test Class Doc Comment
+ * InlineObject2Test Class Doc Comment
  *
  * @category    Class
- * @description InlineObject1
+ * @description InlineObject2
  * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class InlineObject1Test extends TestCase
+class InlineObject2Test extends TestCase
 {
 
     /**
@@ -72,23 +72,9 @@ class InlineObject1Test extends TestCase
     }
 
     /**
-     * Test "InlineObject1"
+     * Test "InlineObject2"
      */
-    public function testInlineObject1()
-    {
-    }
-
-    /**
-     * Test attribute "model_id"
-     */
-    public function testPropertyModelId()
-    {
-    }
-
-    /**
-     * Test attribute "tag"
-     */
-    public function testPropertyTag()
+    public function testInlineObject2()
     {
     }
 
@@ -96,6 +82,13 @@ class InlineObject1Test extends TestCase
      * Test attribute "file"
      */
     public function testPropertyFile()
+    {
+    }
+
+    /**
+     * Test attribute "model_id"
+     */
+    public function testPropertyModelId()
     {
     }
 }

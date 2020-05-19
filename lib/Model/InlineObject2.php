@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineObject1
+ * InlineObject2
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * InlineObject1 Class Doc Comment
+ * InlineObject2 Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class InlineObject1 implements ModelInterface, ArrayAccess
+class InlineObject2 implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class InlineObject1 implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'inline_object_1';
+    protected static $openAPIModelName = 'inline_object_2';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,8 @@ class InlineObject1 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'model_id' => 'string',
-        'tag' => 'string',
-        'file' => '\SplFileObject'
+        'file' => '\SplFileObject',
+        'model_id' => 'string'
     ];
 
     /**
@@ -68,9 +67,8 @@ class InlineObject1 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'model_id' => null,
-        'tag' => null,
-        'file' => 'binary'
+        'file' => 'binary',
+        'model_id' => null
     ];
 
     /**
@@ -100,9 +98,8 @@ class InlineObject1 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'model_id' => 'model_id',
-        'tag' => 'tag',
-        'file' => 'file'
+        'file' => 'file',
+        'model_id' => 'model_id'
     ];
 
     /**
@@ -111,9 +108,8 @@ class InlineObject1 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'model_id' => 'setModelId',
-        'tag' => 'setTag',
-        'file' => 'setFile'
+        'file' => 'setFile',
+        'model_id' => 'setModelId'
     ];
 
     /**
@@ -122,9 +118,8 @@ class InlineObject1 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'model_id' => 'getModelId',
-        'tag' => 'getTag',
-        'file' => 'getFile'
+        'file' => 'getFile',
+        'model_id' => 'getModelId'
     ];
 
     /**
@@ -187,9 +182,8 @@ class InlineObject1 implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['model_id'] = isset($data['model_id']) ? $data['model_id'] : null;
-        $this->container['tag'] = isset($data['tag']) ? $data['tag'] : null;
         $this->container['file'] = isset($data['file']) ? $data['file'] : null;
+        $this->container['model_id'] = isset($data['model_id']) ? $data['model_id'] : null;
     }
 
     /**
@@ -217,54 +211,6 @@ class InlineObject1 implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets model_id
-     *
-     * @return string|null
-     */
-    public function getModelId()
-    {
-        return $this->container['model_id'];
-    }
-
-    /**
-     * Sets model_id
-     *
-     * @param string|null $model_id model_id
-     *
-     * @return $this
-     */
-    public function setModelId($model_id)
-    {
-        $this->container['model_id'] = $model_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets tag
-     *
-     * @return string|null
-     */
-    public function getTag()
-    {
-        return $this->container['tag'];
-    }
-
-    /**
-     * Sets tag
-     *
-     * @param string|null $tag tag
-     *
-     * @return $this
-     */
-    public function setTag($tag)
-    {
-        $this->container['tag'] = $tag;
-
-        return $this;
-    }
-
-    /**
      * Gets file
      *
      * @return \SplFileObject|null
@@ -284,6 +230,30 @@ class InlineObject1 implements ModelInterface, ArrayAccess
     public function setFile($file)
     {
         $this->container['file'] = $file;
+
+        return $this;
+    }
+
+    /**
+     * Gets model_id
+     *
+     * @return string|null
+     */
+    public function getModelId()
+    {
+        return $this->container['model_id'];
+    }
+
+    /**
+     * Sets model_id
+     *
+     * @param string|null $model_id model_id
+     *
+     * @return $this
+     */
+    public function setModelId($model_id)
+    {
+        $this->container['model_id'] = $model_id;
 
         return $this;
     }

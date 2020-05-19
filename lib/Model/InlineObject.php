@@ -57,7 +57,9 @@ class InlineObject implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'file' => '\SplFileObject'
+        'image_url' => 'string',
+        'tag' => 'string',
+        'model_id' => 'string'
     ];
 
     /**
@@ -66,7 +68,9 @@ class InlineObject implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'file' => 'binary'
+        'image_url' => null,
+        'tag' => null,
+        'model_id' => null
     ];
 
     /**
@@ -96,7 +100,9 @@ class InlineObject implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'file' => 'file'
+        'image_url' => 'image_url',
+        'tag' => 'tag',
+        'model_id' => 'model_id'
     ];
 
     /**
@@ -105,7 +111,9 @@ class InlineObject implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'file' => 'setFile'
+        'image_url' => 'setImageUrl',
+        'tag' => 'setTag',
+        'model_id' => 'setModelId'
     ];
 
     /**
@@ -114,7 +122,9 @@ class InlineObject implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'file' => 'getFile'
+        'image_url' => 'getImageUrl',
+        'tag' => 'getTag',
+        'model_id' => 'getModelId'
     ];
 
     /**
@@ -177,7 +187,9 @@ class InlineObject implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['file'] = isset($data['file']) ? $data['file'] : null;
+        $this->container['image_url'] = isset($data['image_url']) ? $data['image_url'] : null;
+        $this->container['tag'] = isset($data['tag']) ? $data['tag'] : null;
+        $this->container['model_id'] = isset($data['model_id']) ? $data['model_id'] : null;
     }
 
     /**
@@ -189,6 +201,15 @@ class InlineObject implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['image_url'] === null) {
+            $invalidProperties[] = "'image_url' can't be null";
+        }
+        if ($this->container['tag'] === null) {
+            $invalidProperties[] = "'tag' can't be null";
+        }
+        if ($this->container['model_id'] === null) {
+            $invalidProperties[] = "'model_id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -205,25 +226,73 @@ class InlineObject implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets file
+     * Gets image_url
      *
-     * @return \SplFileObject|null
+     * @return string
      */
-    public function getFile()
+    public function getImageUrl()
     {
-        return $this->container['file'];
+        return $this->container['image_url'];
     }
 
     /**
-     * Sets file
+     * Sets image_url
      *
-     * @param \SplFileObject|null $file file
+     * @param string $image_url image_url
      *
      * @return $this
      */
-    public function setFile($file)
+    public function setImageUrl($image_url)
     {
-        $this->container['file'] = $file;
+        $this->container['image_url'] = $image_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets tag
+     *
+     * @return string
+     */
+    public function getTag()
+    {
+        return $this->container['tag'];
+    }
+
+    /**
+     * Sets tag
+     *
+     * @param string $tag tag
+     *
+     * @return $this
+     */
+    public function setTag($tag)
+    {
+        $this->container['tag'] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Gets model_id
+     *
+     * @return string
+     */
+    public function getModelId()
+    {
+        return $this->container['model_id'];
+    }
+
+    /**
+     * Sets model_id
+     *
+     * @param string $model_id model_id
+     *
+     * @return $this
+     */
+    public function setModelId($model_id)
+    {
+        $this->container['model_id'] = $model_id;
 
         return $this;
     }
